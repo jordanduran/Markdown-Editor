@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import marked from 'marked';
+import ReactMarkdown from 'react-markdown';
 import './App.css';
 
 export default function App() {
+  const [markdown, setMarkdown] = useState(
+    '# Welcome to this markdown editor!'
+  );
+
+  function handleChange(e) {
+    setMarkdown(e.target.value);
+  }
+
   return (
     <div className="app">
-      <textarea />
-
-      <div className="preview" />
+      <textarea onChange={handleChange} value={markdown} />
+      <ReactMarkdown className="preview" source={markdown} />
     </div>
   );
 }
